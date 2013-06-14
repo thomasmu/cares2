@@ -1,0 +1,42 @@
+<h2>restaurant index</h2>
+
+<ul>
+  <% for restaurant in @restaurants %>
+    <li><%= restaurant.name %>, <%= restaurant.address %> </li>
+  <% end %>
+</ul>
+
+<table>
+  <tr>
+    <th>Nama</th>
+    <th>Specialty</th>
+    <th>Khas Daerah</th>
+    <th>Alamat</th>
+    <th>Area</th>
+    <th>Kota</th>
+    <th>Telepon</th>
+    <th>Jam Buka</th>
+    <th>Jam Weekend</th>
+    <th>Website</th>
+    <th>Keterangan</th>
+    <th>Action</th>
+  </tr>
+ 
+ <% for restaurant in @restaurants %>
+    <tr>
+      <td><%= restaurant.name %></td>
+      <td><%= restaurant.specialty_id %></td>
+      <td><%= restaurant.specialty_area_id %></td>
+      <td><%= restaurant.address %></td>
+      <td><%= restaurant.area %></td>
+      <td><%= restaurant.city_region_id %></td>
+      <td><%= restaurant.phone %></td>
+      <td><%= restaurant.operating_hour %></td>
+      <td><%= restaurant.operating_weekend %></td>
+      <td><%= restaurant.website %></td>
+      <td><%= restaurant.off_day.blank? ? '-' : restaurant.off_day %></td>
+      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%= link_to 'Delete', restaurant, :method => 'delete' %></td>
+    </tr>
+  <% end %>
+  
+</table>

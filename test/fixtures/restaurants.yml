@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  address: MyText
+  area: MyString
+  city_region_id: 1
+  phone: MyString
+  operating_hour: MyString
+  operating_weekend: MyString
+  off_day: MyString
+  website: MyString
+  specialty_id: 1
+  specialty_area_id: 1
+  restaurant_type_id: 1
+  keyword: MyString
+  category_id: 1
+  seat: 1
+  map: 1.5
+  chain: false
+  average_spending: 1
+  delivery: false
+  park_area: false
+  vip_room: false
+  wifi: false
+  reservation_needed: false
+  outdoor: false
+  halal_certificate: false
+  payment_option: 1
+
+two:
+  name: MyString
+  address: MyText
+  area: MyString
+  city_region_id: 1
+  phone: MyString
+  operating_hour: MyString
+  operating_weekend: MyString
+  off_day: MyString
+  website: MyString
+  specialty_id: 1
+  specialty_area_id: 1
+  restaurant_type_id: 1
+  keyword: MyString
+  category_id: 1
+  seat: 1
+  map: 1.5
+  chain: false
+  average_spending: 1
+  delivery: false
+  park_area: false
+  vip_room: false
+  wifi: false
+  reservation_needed: false
+  outdoor: false
+  halal_certificate: false
+  payment_option: 1

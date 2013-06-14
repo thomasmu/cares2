@@ -1,0 +1,14 @@
+<%= form_for @restaurant do |f| %>
+  <%= f.label :name,'Nama' %>: <%= f.text_field :name %><br>
+  <%= f.label :specialty_id, 'Menu' %>: <%= f.text_field :specialty_id %><br>
+  <%= f.label :address,'Alamat' %>: <%= f.text_field :address %><br>
+  <%= f.label :area,'Area' %>: <%= f.text_field :area %><br>
+  <%= f.label :city_region_id,'Kota' %>: <%= f.text_field :city_region_id %><br>
+  <%= f.label :phone,'No. Telepon' %>: <%= f.text_field :phone %><br>
+  <%= f.label :operating_hour,'Jam Buka' %>: <%= f.text_field :operating_hour %><br>
+  <%= f.label :operating_weekend,'Jam Weekend' %>: <%= f.text_field :operating_weekend %><br>
+  <%= f.label :website,'Website' %>: <%= f.text_field :website %><br>
+  <%= f.label :off_day,'Hari tutup' %>: <%= f.text_field :off_day %><br>
+  
+  <%= f.submit %>
+<% end %>
