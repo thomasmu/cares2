@@ -1,0 +1,14 @@
+<h1> Daftar Cuisine Type</h1>
+
+<%= render 'form' %>
+
+<ul>
+  <% for specialty_area in @specialty_areas %>
+    <li>
+      <%= specialty_area.name %> |
+      <%= link_to 'Edit', edit_specialty_area_path(specialty_area) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= content_tag :div, (link_to 'Back', restaurants_path) %>

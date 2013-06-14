@@ -1,0 +1,14 @@
+<h1>Daftar Tipe Restaurant</h1>
+
+<%= render 'form' %>
+
+<ul>
+  <% for restaurant_type in @restaurant_types %>
+    <li>
+      <%= restaurant_type.name %> | 
+      <%= link_to 'Edit', edit_restaurant_type_path(restaurant_type) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= content_tag :div, (link_to 'Back', restaurants_path) %>

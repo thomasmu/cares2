@@ -1,0 +1,14 @@
+<h1> Daftar specialty </h1>
+
+<%= render 'form' %>
+
+<ul>
+  <% for specialty in @specialties %>
+    <li>
+      <%= specialty.name %> |
+      <%= link_to 'Edit', edit_specialty_path(specialty) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= content_tag :div, (link_to 'Back', restaurants_path) %>

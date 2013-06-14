@@ -1,16 +1,17 @@
 <h2>restaurant index</h2>
 
 <ul>
-  <% for restaurant in @restaurants %>
-    <li><%= restaurant.name %>, <%= restaurant.address %> </li>
-  <% end %>
+  <li><%= link_to 'Add Restaurant Type', restaurant_types_path %></li>
+  <li><%= link_to 'Add Specialty', specialties_path %></li>
+  <li><%= link_to 'Add Cuisine Type', specialty_areas_path %></li>
+  <li><%= link_to 'Add City Region', city_regions_path %></li>
 </ul>
 
 <table>
   <tr>
     <th>Nama</th>
     <th>Specialty</th>
-    <th>Khas Daerah</th>
+    <th>Cuisine Type</th>
     <th>Alamat</th>
     <th>Area</th>
     <th>Kota</th>

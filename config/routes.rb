@@ -1,5 +1,4 @@
 Cares::Application.routes.draw do
-  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -53,6 +52,10 @@ Cares::Application.routes.draw do
   # root :to => 'welcome#index'
   root :to => 'Restaurants#index'
   resources :restaurants
+  resources :city_regions
+  resources :specialties
+  resources :specialty_areas
+  resources :restaurant_types
 
   # See how all your routes lay out with "rake routes"
 
