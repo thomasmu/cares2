@@ -1,0 +1,22 @@
+<h1>Daftar Area dan Kota</h1>
+
+<%= render 'form' %>
+
+<table>
+  <tr>
+    <th>Area</th>
+    <th>Madya</th>
+    <th>Kota</th>
+    <th>Action</th>
+  </tr>
+  <% for area in @areas %>
+    <tr>
+      <td><%= area.name %></td>
+      <td><%= area.city_region.name %></td>
+      <td><%= area.city_region.city %></td>
+      <td><%= link_to 'Edit', edit_area_path(area) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= content_tag :div, (link_to 'Back', restaurants_path) %>

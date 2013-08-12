@@ -56,7 +56,8 @@ Cares::Application.routes.draw do
   resources :specialties
   resources :specialty_areas
   resources :restaurant_types
-
+  resources :areas
+  
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

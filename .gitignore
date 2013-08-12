@@ -24,3 +24,4 @@ doc/
 
 # Ignore db config
 /config/database.yml
+/db/schema.rb

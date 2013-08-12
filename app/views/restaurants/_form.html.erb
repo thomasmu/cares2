@@ -1,14 +1,184 @@
+<% if @restaurant.errors.any? %> 
+  <ul>
+  <% @restaurant.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<div class="form-container">
 <%= form_for @restaurant do |f| %>
-  <%= f.label :name,'Nama' %>: <%= f.text_field :name %><br>
-  <%= f.label :specialty_id, 'Menu' %>: <%= f.text_field :specialty_id %><br>
-  <%= f.label :address,'Alamat' %>: <%= f.text_field :address %><br>
-  <%= f.label :area,'Area' %>: <%= f.text_field :area %><br>
-  <%= f.label :city_region_id,'Kota' %>: <%= f.text_field :city_region_id %><br>
-  <%= f.label :phone,'No. Telepon' %>: <%= f.text_field :phone %><br>
-  <%= f.label :operating_hour,'Jam Buka' %>: <%= f.text_field :operating_hour %><br>
-  <%= f.label :operating_weekend,'Jam Weekend' %>: <%= f.text_field :operating_weekend %><br>
-  <%= f.label :website,'Website' %>: <%= f.text_field :website %><br>
-  <%= f.label :off_day,'Hari tutup' %>: <%= f.text_field :off_day %><br>
+  <div class="label-med">
+    <%= f.label :name,'Nama Restoran' %>: 
+  </div><%= f.text_field :name, :placeholder => "tulis nama restoran.." %> <%= f.error_message_on :name %><br>
   
+  <div class="label-med">
+    <%= f.label :address,'Alamat' %>: 
+  </div><%= f.text_field :address, :placeholder => "tulis alamat restoran.." %> <%= f.error_message_on :address %> <br>
+  
+  <div class="label-med">
+    <%= f.label :area_id,'Area' %>: 
+  </div><%= f.collection_select :area_id, @areas, :id, :name %><br>
+  
+  <div class="label-med">
+    <%= f.label :city_region_id,'Kota' %>: 
+  </div><%= f.collection_select :city_region_id, @regions, :id, :display_name %><br>
+  
+  <div class="label-med">
+    <%= f.label :phone,'No. Telepon' %>: 
+  </div><%= f.text_field :phone %> <%= f.error_message_on :phone %><br>
+  
+  <div class="label-med">
+    <%= f.label :website,'Website' %>: 
+  </div><%= f.text_field :website %><br><br>
+
+  <div class="label-med">
+    <%= f.label :specialty_list, 'Menu Spesial' %>: 
+  </div><%= f.hidden_field :specialty_list, :id => "specialty_list" %>
+  <ul id="specialty_field" class="tagit ui-widget ui-widget-content ui-corner-all" ></ul><br>
+  
+  <div class="label-med">
+    <%= f.label :specialty_area_id, 'Cuisine Type' %>: 
+  </div><%= f.collection_select :specialty_area_id, @specialty_areas, :id, :name %><br>
+  
+  <div class="label-med">
+    <%= f.label :restaurant_type_id, 'Tipe Resto' %>: 
+  </div><%= f.collection_select :restaurant_type_id, @restaurant_types, :id, :name %><br><br>
+  
+  <div class="label-med">
+    <%= f.label :operating_hour,'Jam Buka' %>: 
+  </div><%= f.text_field :operating_hour, :placeholder => "contoh: 09.00 - 21.00 .." %> 
+  <%= f.error_message_on :operating_hour %><br>
+  
+  <div class="label-med">
+    <%= f.label :operating_weekend,'Jam Weekend' %>: 
+  </div><%= f.text_field :operating_weekend, :placeholder => "contoh: 09.00 - 23.00 .." %><br>
+  
+  <div class="label-med">
+    <%= f.label :off_day,'Hari tutup' %>: 
+  </div><%= f.select :off_day, @day_offs, include_blank: 'Selalu Buka' %><br>
+  
+  <div class="label-med">
+    <%= f.label :average_spending, 'Rata-rata harga' %>: 
+  </div><%= f.select :average_spending, @pricing %><br>
+  
+  <div class="label-med">
+    <%= f.label :seat, 'Kapasitas' %>: 
+  </div><%= f.text_field :seat, :class => "number-field" %> kursi<br>
+  
+  <div class="label-med">
+    <%= label :chain, 'Chain' %>: 
+  </div><%= f.radio_button :chain, true %><%= f.label :chain_true, 'Ya' %> &nbsp;
+  <%= f.radio_button :chain, false %><%= f.label :chain_false, 'Tidak' %><br><br>
+  
+  <% #newly added - need to change data type on restaurant table and add on display %>
+  <div class="label-med">
+    <%= f.label :dish_list, 'Jenis Makanan' %>: 
+  </div><%= f.hidden_field :dish_list, :id => "dishes" %>
+  <ul id="dish_field" class="tagit ui-widget ui-widget-content ui-corner-all"></ul><br>
+  
+  <div class="label-long">
+    <%= f.label :category_list, 'Kategori restoran (cocok untuk)' %>: 
+  </div><%= f.hidden_field :category_list, :id => "categories" %>
+  <ul id="category_field" class="tagit ui-widget ui-widget-content ui-corner-all"></ul><br>
+  
+  <div class="label-med">
+    <%= f.label :payment_method_list, 'Cara pembayaran' %>: 
+  </div><%= f.hidden_field :payment_method_list, :id => "payments" %>
+  <ul id="payment_field" class="tagit ui-widget ui-widget-content ui-corner-all"></ul><br>
+  
+  <%= label :facility, 'Fasilitas' %>:  <br>
+  
+  <div class="label-small">
+    <%= label :delivery, 'Delivery' %>: 
+  </div><%= f.radio_button :delivery, true %><%= f.label :delivery_true, 'Bisa' %> &nbsp;
+  <%= f.radio_button :delivery, false, :default => true %><%= f.label :delivery_false, 'Tidak bisa' %><br>
+  
+  <div class="label-small">
+    <%= label :park_area, 'Tempat Parkir' %>: 
+  </div><%= f.radio_button :park_area, true %><%= f.label :park_area_true, 'Ada' %> &nbsp;
+  <%= f.radio_button :park_area, false %><%= f.label :park_area_false, 'Tidak ada' %><br>
+  
+  <div class="label-small">
+    <%= label :vip_room, 'VIP Room' %>: 
+  </div><%= f.radio_button :vip_room, true %><%= f.label :vip_room_true, 'Ada' %> &nbsp;
+  <%= f.radio_button :vip_room, false %><%= f.label :vip_room_false, 'Tidak ada' %><br>
+  
+  <div class="label-small">
+    <%= label :wifi, 'WiFi' %>: 
+  </div><%= f.radio_button :wifi, true %><%= f.label :wifi_true, 'Ada' %> &nbsp;
+  <%= f.radio_button :wifi, false %><%= f.label :wifi_false, 'Tidak ada' %><br>
+  
+  <div class="label-small">
+    <%= label :reservation_needed, 'Reservasi' %>: 
+  </div><%= f.radio_button :reservation_needed, true %><%= f.label :reservation_needed_true, 'Bisa' %> &nbsp;
+  <%= f.radio_button :reservation_needed, false %><%= f.label :reservation_needed_false, 'Tidak bisa' %><br>
+  
+  <div class="label-small">
+    <%= label :outdoor, 'Ruangan Luar' %>: 
+  </div><%= f.radio_button :outdoor, true %><%= f.label :outdoor_true, 'Ada' %> &nbsp;
+  <%= f.radio_button :outdoor, false %><%= f.label :outdoor_false, 'Tidak ada' %><br>
+  
+  <div class="label-small">
+    <%= label :halal_certificate, 'Halal' %>: 
+  </div><%= f.radio_button :halal_certificate, true %><%= f.label :halal_certificate_true, 'Halal' %> &nbsp;
+  <%= f.radio_button :halal_certificate, false %><%= f.label :halal_certificate_false, 'Non-halal' %><br>
+  
+  <div class="label-small">
+    <%= f.label :map, 'Peta' %>: 
+  </div><%= f.text_field :map, :placeholder => "koordinat restoran.." %>
+  <br><br>
   <%= f.submit %>
 <% end %>
+</div>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<style>
+.form-container {margin-left:30px; float:left;}
+.label-med {width:115px; float: left;}
+.label-small {width:115px; float: left;}
+.label-long {float: left;}
+.tagit {width:350px; margin-bottom:0px;}
+.number-field {width:40px;}
+</style>
+<script>
+  $(document).ready(function() {
+    var dishTags = <%= raw(@specialties.map(&:name)) %>;
+    var categoryTags = <%= raw(@categories.map(&:name)) %>;
+    var paymentTags = <%= raw(@payment.map(&:name)) %>;
+    
+    $("#specialty_field").tagit({
+       availableTags: dishTags,
+       singleField: true,
+       singleFieldNode: $('#specialty_list'),
+       tagLimit: 3,
+       caseSensitive: false,
+       allowSpaces: true
+     });
+      
+    $("#dish_field").tagit({
+      availableTags: dishTags,
+      singleField: true,
+      singleFieldNode: $('#dishes'),
+      caseSensitive: false,
+      allowSpaces: true
+    });
+    
+    $("#category_field").tagit({
+      availableTags: categoryTags,
+      singleField: true,
+      singleFieldNode: $('#categories'),
+      tagLimit: 5,
+      caseSensitive: false,
+      allowSpaces: true
+    });
+    
+    $("#payment_field").tagit({
+      availableTags: paymentTags,
+      singleField: true,
+      singleFieldNode: $('#payments'),
+      caseSensitive: false,
+      allowSpaces: true
+    });
+  });
+</script>

@@ -1,43 +1,52 @@
 <h2>restaurant index</h2>
 
-<ul>
-  <li><%= link_to 'Add Restaurant Type', restaurant_types_path %></li>
-  <li><%= link_to 'Add Specialty', specialties_path %></li>
-  <li><%= link_to 'Add Cuisine Type', specialty_areas_path %></li>
-  <li><%= link_to 'Add City Region', city_regions_path %></li>
-</ul>
+<div>
+  <%= link_to 'Add Restaurant Type', restaurant_types_path %> | 
+  <%= link_to 'Add Specialty', specialties_path %> | 
+  <%= link_to 'Add Cuisine Type', specialty_areas_path %> | 
+  <%= link_to 'Add Area', areas_path %> | 
+  <%= link_to 'Add City Region', city_regions_path %> | 
+  <%= link_to 'Add Resto', new_restaurant_path %>
+</div>
 
-<table>
-  <tr>
-    <th>Nama</th>
-    <th>Specialty</th>
-    <th>Cuisine Type</th>
-    <th>Alamat</th>
-    <th>Area</th>
-    <th>Kota</th>
-    <th>Telepon</th>
-    <th>Jam Buka</th>
-    <th>Jam Weekend</th>
-    <th>Website</th>
-    <th>Keterangan</th>
-    <th>Action</th>
-  </tr>
- 
- <% for restaurant in @restaurants %>
+<p>
+  <table>
     <tr>
-      <td><%= restaurant.name %></td>
-      <td><%= restaurant.specialty_id %></td>
-      <td><%= restaurant.specialty_area_id %></td>
-      <td><%= restaurant.address %></td>
-      <td><%= restaurant.area %></td>
-      <td><%= restaurant.city_region_id %></td>
-      <td><%= restaurant.phone %></td>
-      <td><%= restaurant.operating_hour %></td>
-      <td><%= restaurant.operating_weekend %></td>
-      <td><%= restaurant.website %></td>
-      <td><%= restaurant.off_day.blank? ? '-' : restaurant.off_day %></td>
-      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%= link_to 'Delete', restaurant, :method => 'delete' %></td>
+      <th>Nama</th>
+      <th>Special Menu</th>
+      <th>Cuisine Type</th>
+      <th>Tipe Resto</th>
+      <th>Alamat</th>
+      <th>Area</th>
+      <th>Madya</th>
+      <th>Kota</th>
+      <th>Telepon</th>
+      <th>Jam Buka</th>
+      <th>Jam Weekend</th>
+      <th>Website</th>
+      <th>Chain</th>
+      <th>Keterangan</th>
+      <th>Action</th>
     </tr>
-  <% end %>
-  
-</table>
+
+   <% for restaurant in @restaurants %>
+      <tr>
+        <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
+        <td><%= restaurant.specialty_list %></td>
+        <td><%= restaurant.specialty_area.name %></td>
+        <td><%= restaurant.restaurant_type.name %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.area.name %></td>
+        <td><%= restaurant.city_region.name %></td>
+        <td><%= restaurant.city_region.city %></td>
+        <td><%= restaurant.phone %></td>
+        <td><%= restaurant.operating_hour %></td>
+        <td><%= restaurant.operating_weekend %></td>
+        <td><%= restaurant.website %></td>
+        <td><%= restaurant.chain? ? 'yes' : 'no' %></td>
+        <td><%= (restaurant.off_day.blank? || restaurant.off_day == '-') ? "-" : "#{restaurant.off_day} tutup" %></td>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%= link_to 'Delete', restaurant, :method => 'delete' %></td>
+      </tr>
+    <% end %>  
+  </table>
+</p>

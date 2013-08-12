@@ -1,0 +1,5 @@
+<%= form_for @area do |f| %>
+  <%= f.label :name, 'Area' %> <%= f.text_field :name %><br>
+  <%= f.label :city_region_id, 'Kota' %> <%= f.collection_select :city_region_id, @regions, :id, :display_name %><br>
+  <%= f.submit 'Daftarkan' %>
+<% end %>

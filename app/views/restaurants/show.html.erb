@@ -1,0 +1,58 @@
+<h1><%= @restaurant.name %></h1>
+
+<div>
+  Alamat <%= @restaurant.address %><br>
+  Area <%= @restaurant.area.name %><br>
+  Region <%= @restaurant.city_region.name %><br>
+  Kota <%= @restaurant.city_region.city %><br>
+  No. Telp <%= @restaurant.phone %><br>
+  Website <%= @restaurant.website %><br>
+</div>
+<br>
+
+<div>
+  Menu Spesial <%= @restaurant.specialty_list %><br>
+  Tipe Makanan <%= @restaurant.specialty_area.name %><br>
+  Tipe Resto <%= @restaurant.restaurant_type.name %><br>
+</div>
+<br>
+
+<div>
+  Jam Buka <%= @restaurant.operating_hour %><br>
+  (weekend) <%= @restaurant.operating_weekend %><br>
+  Hari tutup <%= @restaurant.off_day %><br>
+  Rata-rata Harga <%= @restaurant.average_spending %><br>
+  Kapasitas <%= @restaurant.seat %><br>
+  <%= "Chain resto" if @restaurant.chain %>
+</div>
+<br>
+
+<div>
+  Jenis Makanan <%= @restaurant.dish_list %><br>
+  Cocok untuk <%= @restaurant.category_list %><br>
+  Cara pembayaran <%= @restaurant.payment_method_list %><br>
+</div>
+<br>
+
+<div>
+  Fasilitas
+  <ul>
+  <%= content_tag(:li, "Delivery") if @restaurant.delivery %>
+  <%= content_tag(:li, "Tempat Parkir") if @restaurant.park_area %>
+  <%= content_tag(:li, "WiFi") if @restaurant.wifi %>
+  <%= content_tag(:li, "VIP Room") if @restaurant.vip_room %>
+  <%= content_tag(:li, "Reservasi") if @restaurant.reservation_needed %>
+  <%= content_tag(:li, "Ruangan Luar") if @restaurant.outdoor %>
+  <%= content_tag(:li, "Halal") if @restaurant.halal_certificate %>
+  </ul>
+</div>
+<br>
+
+<div>
+  Peta
+</div>
+<br>
+
+<div>
+Review
+</div>
